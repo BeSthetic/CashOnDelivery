@@ -1,10 +1,3 @@
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
-
-# IMPORTANT NOTICE:
-
-This module has been moved under the responsibility of "it4mage" group.
-Please check this URL: https://github.com/it4mage/CashOnDelivery .
-
 # Cash On Delivery for Magento 2
 
 This module is a Cash On Delivery implementation for Magento2 allowing you to define an additional fee based on destination country, region and total amount.
