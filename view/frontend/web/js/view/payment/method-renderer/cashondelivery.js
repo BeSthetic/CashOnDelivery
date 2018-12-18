@@ -43,7 +43,7 @@ define(
             refreshMethod: function () {
                 var serviceUrl;
 
-                var paymentData = quote.paymentMethod();
+                var paymentData = quote.getPaymentMethod();
 
                 // We have to make sure we don't send title to the backend,
                 // otherwise it will fail. Perhaps there is better way to do this.
@@ -69,7 +69,7 @@ define(
                     serviceUrl,
                     JSON.stringify(payload)
                 ).done(function () {
-                    cashondelivery.canShowCashOnDelivery(quote.paymentMethod().method == 'msp_cashondelivery');
+                    cashondelivery.canShowCashOnDelivery(quote.getPaymentMethod().method === 'msp_cashondelivery');
                     getTotalsAction([]);
                     fullScreenLoader.stopLoader();
                 });
@@ -86,16 +86,16 @@ define(
                 });
 
                 quote.paymentMethod.subscribe(function () {
-                    if (quote.paymentMethod().method != me.lastDetectedMethod) {
+                    if (quote.getPaymentMethod().method !== me.lastDetectedMethod) {
                         if (
-                            (quote.paymentMethod().method == 'msp_cashondelivery') ||
-                            (me.lastDetectedMethod == 'msp_cashondelivery') ||
+                            (quote.getPaymentMethod().method === 'msp_cashondelivery') ||
+                            (me.lastDetectedMethod === 'msp_cashondelivery') ||
                             (totals.getSegment('msp_cashondelivery') && (me.lastDetectedMethod === null))
                         ) {
                             me.refreshMethod();
                         }
 
-                        me.lastDetectedMethod = quote.paymentMethod().method;
+                        me.lastDetectedMethod = quote.getPaymentMethod().method;
                     }
                 });
 
